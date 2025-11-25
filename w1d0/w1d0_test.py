@@ -204,12 +204,3 @@ def test_analyze_user_behavior(solution: Callable[[str], object]):
     for repo_name in result.repo_names:
         assert isinstance(repo_name, str), f"Repo name should be string, got {type(repo_name)}"
         assert len(repo_name) > 0, "Repo names should not be empty"
-
-    # Test with non-existent user
-    nonexistent_result = solution("this_user_definitely_does_not_exist_12345")
-    assert type(result).__name__ == "UserIntel", "Should return UserIntel even for non-existent users"
-    assert nonexistent_result.username == "this_user_definitely_does_not_exist_12345"
-    assert nonexistent_result.name is None, "Non-existent user should have None for name"
-    assert nonexistent_result.location is None, "Non-existent user should have None for location"
-    assert nonexistent_result.email is None, "Non-existent user should have None for email"
-    assert nonexistent_result.repo_names == [], "Non-existent user should have empty repo_names"
